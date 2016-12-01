@@ -45,6 +45,10 @@
             <xsl:call-template name="afficherSynopsis">
                 <xsl:with-param name="film" select="$film" />
             </xsl:call-template>
+
+            <xsl:call-template name="afficherPersonnages">
+                <xsl:with-param name="film" select="$film" />
+            </xsl:call-template>
         </table>
     </xsl:template>
 
@@ -76,6 +80,19 @@
                 <h3>Synopsys: </h3>
         </th>
         <tr><td colspan="4"> <xsl:value-of select="$film/synopsis" /> </td></tr>
+    </xsl:template>
+
+    <xsl:template name="afficherPersonnages">
+        <xsl:param name="film"/>
+        <th colspan="4"  id="sous-rubrique">
+                <h3>Personnages: </h3>
+        </th>
+        <xsl:for-each select="$film/personnages/personnage">
+            <tr>
+                <td colspan="2"> <xsl:value-of select="." /> </td>
+                <td colspan="2">Incarné par: <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /></td>
+            </tr>
+        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>
