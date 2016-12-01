@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+}
+
+#titre-film{
+	color: red;
+}
+
+#sous-rubrique{
+	text-align: left;
+	color: blue;
+}
+
+td {
+    padding: 10px;
+}

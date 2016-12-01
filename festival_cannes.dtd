@@ -1,0 +1,95 @@
+<!-- DTD du TP autour du festival de Cannes  -->
+
+<!-- - - - - -->
+<!-- racine  -->
+<!-- - - - - -->
+
+<!ELEMENT festival_cannes (nationalites, artistes, films, jury, palmares)>
+<!ATTLIST festival_cannes annee CDATA #REQUIRED>
+
+<!-- - - - - - - - - - - - - - - - - - - - - -->
+<!-- liste des nationalités et pays associés -->
+<!-- - - - - - - - - - - - - - - - - - - - - -->
+
+<!ELEMENT nationalites (pays+)>
+
+<!ELEMENT pays (#PCDATA)>
+<!ATTLIST pays code ID #REQUIRED>
+
+<!-- - - - - - - - - - - - - - - - -->
+<!-- description de chaque artiste -->
+<!-- - - - - - - - - - - - - - - - -->
+
+<!ELEMENT artistes (artiste+)>
+
+<!ELEMENT artiste (prenom, nom, biographie?)>
+<!ATTLIST artiste id   ID     #REQUIRED
+                  sexe (M|F)  #REQUIRED
+                  pays IDREFS #REQUIRED>
+
+<!ELEMENT prenom     (#PCDATA)>
+<!ELEMENT nom        (#PCDATA)>
+<!ELEMENT biographie (#PCDATA)>
+
+<!-- - - - - - - - - - - - - - - -->
+<!-- description de chaque film  -->
+<!-- - - - - - - - - - - - - - - -->
+
+<!ELEMENT films (film+)>
+
+<!ELEMENT film (titre, synopsis, casting, personnages)>
+<!ATTLIST film id               ID     #REQUIRED
+               pays             IDREFS #REQUIRED
+               annee_production CDATA  #REQUIRED
+               duree            CDATA  #REQUIRED
+               date_sortie      CDATA  #REQUIRED>
+
+<!ELEMENT titre    (#PCDATA)>
+
+<!ELEMENT synopsis (#PCDATA)>
+
+<!-- le casting référence les réalisateurs, scénaristes et -->
+<!-- éventuellement chefs décorateurs du film              -->
+
+<!ELEMENT casting EMPTY>
+<!ATTLIST casting realisateurs     IDREFS #REQUIRED
+                  scenaristes      IDREFS #REQUIRED
+                  chef_decorateurs IDREFS #IMPLIED>
+
+<!-- chaque personnage du film est incarné par un acteur (ou plusieurs, par ex. à des âges  -->
+<!-- différents) et le contenu de la balise personnage est le nom du personnage en question -->
+
+<!ELEMENT personnages (personnage+)>
+
+<!ELEMENT personnage (#PCDATA)>
+<!ATTLIST personnage incarne_par IDREFS #REQUIRED>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- description de chaque membre du jury et palmarès du festival  -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!ELEMENT jury (membre+)>
+
+<!ELEMENT membre EMPTY>
+<!ATTLIST membre artiste IDREF #REQUIRED
+                 role    CDATA "membre">
+
+<!ELEMENT palmares (prix+)>
+
+
+<!-- il peut y avoir des films ou artistes ex aquo pour certains prix           -->
+
+
+<!-- selon certaines règles comportant des exceptions et évoluant avec le temps -->
+
+<!-- (cf. https://fr.wikipedia.org/wiki/Festival_de_Cannes)                     -->
+
+<!ELEMENT prix (attribution+)>
+<!ATTLIST prix nom    CDATA #REQUIRED
+
+>
+
+<!ELEMENT attribution EMPTY>
+<!ATTLIST attribution film    IDREF #REQUIRED
+                      artiste IDREF #IMPLIED
+>

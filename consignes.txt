@@ -1,0 +1,17 @@
+Réaliser et appliquer une transformation sur le fichier XML du festival de Cannes pour en obtenir une page web :
+
+    partir du fichier XML fourni en solution dans la section 2 - Définitions DTD en le modifiant pour faire référence à un fichier de transformation XSLT (.xsl)
+    construire le fichier XLST de manière à ce qu'il permette d'obtenir une page web au format HTML5* comportant :
+        une référence à un fichier de style CSS externe chargé de sa mise en forme
+        un petit texte introductif de votre cru
+        films en compétition, triés par leur titre, avec pour chaque film :
+            son titre suivi des "identités" de ses réalisateurs et scénaristes, son année de production, ses nationalités, sa durée, sa date de sortie
+            les éventuels prix obtenus par le film ou ses interprètes
+            son synopsis
+            son "casting", entendu par la liste de ses acteurs/actrices, avec pour chacun :
+                son "identité"
+                le nom du personnage (supposé unique) qu'il a incarné dans le film
+            l'"identité" d'un artiste est composée comme suit : texte "prénom nom", dont le survol affiche son sexe et le pays de sa nationalité et porte éventuellement un lien, s'il possède une biographie, dont le clic amène vers sa description en annexe
+        le jury du festival, avec pour chaque membre son "identité" (composée comme précédemment), en commençant par son président (mis en exergue) et les autres membres triés par leur nom
+        le palmarès, présentant pour chaque prix attribué, le film ou l'artiste auquel le prix est descerné (en précisant pour quel film dans le cas de l'artiste)
+        en annexe, la liste des artistes comportant une biographie triés par leur nom, avec leur "prénom nom", sexe, pays de nationalité, et biographie en question
