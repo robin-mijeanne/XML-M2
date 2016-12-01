@@ -89,10 +89,21 @@
         </th>
         <xsl:for-each select="$film/personnages/personnage">
             <tr>
-                <td colspan="2"> <xsl:value-of select="." /> </td>
-                <td colspan="2">Incarné par: <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /></td>
+                <td colspan="2">
+                    <xsl:call-template name="afficherActeur">
+                        <xsl:with-param name="personnage" select="." />
+                    </xsl:call-template>
+                </td>
+                <td colspan="2">Incarne: <xsl:value-of select="." /> </td>
             </tr>
         </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template name="afficherActeur">
+        <xsl:param name="personnage"/>
+        <h4><xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /> </h4>
+        <h4><xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/prenom" /> </h4>
+        <h5>Sexe: <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/@sexe" /></h5>
     </xsl:template>
 
 </xsl:stylesheet>
