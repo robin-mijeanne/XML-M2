@@ -135,8 +135,8 @@
 
         <xsl:template name="afficherArtiste">
             <xsl:param name="personnage"/>
-            <h4><xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /> &#160; <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/prenom" /> </h4>
-            <h5>Sexe: <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/@sexe" /></h5>
+            <h4 title="Sexe: {//artiste[@id=$personnage/@incarne_par]/@sexe}"><xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/prenom" /> &#160; <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /> </h4>
+           
         </xsl:template>
 
         <xsl:template name="afficherMembreJury">
@@ -170,15 +170,13 @@
 
         <xsl:template name="afficherAttribution">
             <xsl:param name="attribution"/>
-            <tr><td><h4>
-                Film récompensé :<xsl:value-of select="//film[@id=$attribution/@film]/titre" />
-            </h4> 
-            <xsl:if test="count($attribution/@artiste) != 0">
-                <h5>   Artiste récompensé: <xsl:value-of select="//artiste[@id=$attribution/@artiste]/prenom" /> &#160; <xsl:value-of select="//artiste[@id=$attribution/@artiste]/nom" /></h5>
-            </xsl:if>
-        </td></tr>
-            
+            <tr>
+                <td>
+                    <h4>Film récompensé: <xsl:value-of select="//film[@id=$attribution/@film]/titre" /></h4> 
+                    <xsl:if test="count($attribution/@artiste) != 0">
+                        <h5>   Artiste récompensé: <xsl:value-of select="//artiste[@id=$attribution/@artiste]/prenom" /> &#160; <xsl:value-of select="//artiste[@id=$attribution/@artiste]/nom" /></h5>
+                    </xsl:if>
+                </td>
+            </tr>
         </xsl:template>
-
-
     </xsl:stylesheet>
