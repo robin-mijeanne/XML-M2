@@ -149,7 +149,7 @@
 
         <xsl:template name="afficherArtiste">
             <xsl:param name="personnage"/>
-            <a href="#{//personnage/@incarne_par}"><h4 title="Sexe:&#160;{//artiste[@id=$personnage/@incarne_par]/@sexe},&#160;Pays:&#160;{//nationalites/pays[@code=//artiste[@id=$personnage/@incarne_par]/@pays]}"><xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/prenom" /> &#160; <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /> </h4></a>
+            <a href="#{$personnage/@incarne_par}"><h4 title="Sexe:&#160;{//artiste[@id=$personnage/@incarne_par]/@sexe},&#160;Pays:&#160;{//nationalites/pays[@code=//artiste[@id=$personnage/@incarne_par]/@pays]}"><xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/prenom" /> &#160; <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /> </h4></a>
            
         </xsl:template>
 
