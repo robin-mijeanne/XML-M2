@@ -58,6 +58,20 @@
                         </xsl:for-each>
                     </table>
 
+                    <table border="1">
+                      
+                        <th colspan="4">
+                            <h1 id="titre-film">BIOGRAPHIES</h1>
+                        </th>
+                        
+                        <xsl:for-each select="//artiste">
+                            <xsl:call-template name="afficherBiographie">
+                                <xsl:with-param name="artiste" select="." />
+                            </xsl:call-template>
+                        </xsl:for-each>
+                  
+                    </table>
+
                 </body>
             </html>
         </xsl:template>
@@ -135,7 +149,7 @@
 
         <xsl:template name="afficherArtiste">
             <xsl:param name="personnage"/>
-            <h4 title="Sexe: {//artiste[@id=$personnage/@incarne_par]/@sexe}"><xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/prenom" /> &#160; <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /> </h4>
+            <a href="#{//personnage/@incarne_par}"><h4 title="Sexe:&#160;{//artiste[@id=$personnage/@incarne_par]/@sexe},&#160;Pays:&#160;{//nationalites/pays[@code=//artiste[@id=$personnage/@incarne_par]/@pays]}"><xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/prenom" /> &#160; <xsl:value-of select="//artiste[@id=$personnage/@incarne_par]/nom" /> </h4></a>
            
         </xsl:template>
 
@@ -178,5 +192,22 @@
                     </xsl:if>
                 </td>
             </tr>
+        </xsl:template>
+
+        <xsl:template name="afficherBiographie">
+            <xsl:param name="artiste"/>
+            <tr>
+                <th colspan="4"><div id="{$artiste/@id}"><h3 id="sous-rubrique"><xsl:value-of select="$artiste/prenom" /> &#160; <xsl:value-of select="$artiste/nom" /></h3></div></th>
+            </tr>
+            <tr>
+                <td><h4><xsl:value-of select="//nationalites/pays[@code=$artiste/@pays]" /></h4></td>
+                <td><h4><xsl:value-of select="$artiste/@sexe" /></h4></td>
+            </tr>
+            <xsl:if test="count($artiste/biographie) != 0">
+            <tr>
+                <td><h4>Biographie</h4></td>
+                <td><xsl:value-of select="$artiste/biographie" /></td>
+            </tr>
+            </xsl:if>
         </xsl:template>
     </xsl:stylesheet>
