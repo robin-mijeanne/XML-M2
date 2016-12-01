@@ -45,6 +45,19 @@
                         </xsl:for-each>
                     </table>
 
+                    <table border="1">
+                        <tr>
+                        <th colspan="4">
+                            <h1 id="titre-film">PALMARES</h1>
+                        </th>
+                        </tr>
+                        <xsl:for-each select="//prix">
+                            <xsl:call-template name="afficherPalmares">
+                                <xsl:with-param name="prix" select="." />
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </table>
+
                 </body>
             </html>
         </xsl:template>
@@ -136,4 +149,36 @@
                 <h4><xsl:value-of select="$membre/@role" /></h4>
            </xsl:if>
         </xsl:template>
+
+        <xsl:template name="afficherPalmares">
+            <xsl:param name="prix"/>
+            <tr>
+                <td>
+                    <h4><xsl:value-of select="$prix/@nom" /> &#160;</h4>
+                </td>
+
+                <td>
+                <xsl:for-each select="$prix/attribution">
+                <xsl:call-template name="afficherAttribution">
+                    <xsl:with-param name="attribution" select="." />
+                </xsl:call-template>
+                </xsl:for-each>
+                </td>
+            </tr>
+               
+        </xsl:template>
+
+        <xsl:template name="afficherAttribution">
+            <xsl:param name="attribution"/>
+            <tr><td><h4>
+                Film récompensé :<xsl:value-of select="//film[@id=$attribution/@film]/titre" />
+            </h4> 
+            <xsl:if test="count($attribution/@artiste) != 0">
+                <h5>   Artiste récompensé: <xsl:value-of select="//artiste[@id=$attribution/@artiste]/prenom" /> &#160; <xsl:value-of select="//artiste[@id=$attribution/@artiste]/nom" /></h5>
+            </xsl:if>
+        </td></tr>
+            
+        </xsl:template>
+
+
     </xsl:stylesheet>
